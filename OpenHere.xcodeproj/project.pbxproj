@@ -10,6 +10,7 @@
 		498763F01D4D84E9001A6121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498763EF1D4D84E9001A6121 /* AppDelegate.swift */; };
 		498763F21D4D84E9001A6121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 498763F11D4D84E9001A6121 /* Assets.xcassets */; };
 		498763F51D4D84E9001A6121 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 498763F31D4D84E9001A6121 /* MainMenu.xib */; };
+		49B27FBB1D52F63E0094EE9C /* SafariTechnologyPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B27FBA1D52F63E0094EE9C /* SafariTechnologyPreview.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +19,10 @@
 		498763F11D4D84E9001A6121 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		498763F41D4D84E9001A6121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		498763F61D4D84E9001A6121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49B27FB51D51A8990094EE9C /* SafariTechnologyPreviewSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafariTechnologyPreviewSupport.h; sourceTree = "<group>"; };
+		49B27FB61D51A9730094EE9C /* OpenHere-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenHere-Bridging-Header.h"; sourceTree = "<group>"; };
+		49B27FB91D52F63E0094EE9C /* SafariTechnologyPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafariTechnologyPreview.h; sourceTree = "<group>"; };
+		49B27FBA1D52F63E0094EE9C /* SafariTechnologyPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafariTechnologyPreview.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,10 +55,14 @@
 		498763EE1D4D84E9001A6121 /* OpenHere */ = {
 			isa = PBXGroup;
 			children = (
+				49B27FB61D51A9730094EE9C /* OpenHere-Bridging-Header.h */,
+				49B27FB51D51A8990094EE9C /* SafariTechnologyPreviewSupport.h */,
+				49B27FB91D52F63E0094EE9C /* SafariTechnologyPreview.h */,
+				49B27FBA1D52F63E0094EE9C /* SafariTechnologyPreview.m */,
+				498763F61D4D84E9001A6121 /* Info.plist */,
 				498763EF1D4D84E9001A6121 /* AppDelegate.swift */,
 				498763F11D4D84E9001A6121 /* Assets.xcassets */,
 				498763F31D4D84E9001A6121 /* MainMenu.xib */,
-				498763F61D4D84E9001A6121 /* Info.plist */,
 			);
 			path = OpenHere;
 			sourceTree = "<group>";
@@ -92,6 +101,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = F7NXW9A7Z8;
 						DevelopmentTeamName = "Marc Schwieterman Software, LLC";
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -131,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49B27FBB1D52F63E0094EE9C /* SafariTechnologyPreview.m in Sources */,
 				498763F01D4D84E9001A6121 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,11 +250,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = OpenHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mssft.OpenHere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OpenHere/OpenHere-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -252,11 +266,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = OpenHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mssft.OpenHere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OpenHere/OpenHere-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -280,6 +296,7 @@
 				498763FB1D4D84E9001A6121 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
