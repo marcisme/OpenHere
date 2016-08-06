@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		495863E91D56462A008DD607 /* AXUIElementExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495863E81D56462A008DD607 /* AXUIElementExtensions.swift */; };
 		498763F01D4D84E9001A6121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498763EF1D4D84E9001A6121 /* AppDelegate.swift */; };
 		498763F21D4D84E9001A6121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 498763F11D4D84E9001A6121 /* Assets.xcassets */; };
 		498763F51D4D84E9001A6121 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 498763F31D4D84E9001A6121 /* MainMenu.xib */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		495863E81D56462A008DD607 /* AXUIElementExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AXUIElementExtensions.swift; sourceTree = "<group>"; };
 		498763EC1D4D84E9001A6121 /* OpenHere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenHere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		498763EF1D4D84E9001A6121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		498763F11D4D84E9001A6121 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,11 +58,12 @@
 			isa = PBXGroup;
 			children = (
 				49B27FB61D51A9730094EE9C /* OpenHere-Bridging-Header.h */,
-				49B27FB51D51A8990094EE9C /* SafariTechnologyPreviewSupport.h */,
 				49B27FB91D52F63E0094EE9C /* SafariTechnologyPreview.h */,
+				49B27FB51D51A8990094EE9C /* SafariTechnologyPreviewSupport.h */,
 				49B27FBA1D52F63E0094EE9C /* SafariTechnologyPreview.m */,
 				498763F61D4D84E9001A6121 /* Info.plist */,
 				498763EF1D4D84E9001A6121 /* AppDelegate.swift */,
+				495863E81D56462A008DD607 /* AXUIElementExtensions.swift */,
 				498763F11D4D84E9001A6121 /* Assets.xcassets */,
 				498763F31D4D84E9001A6121 /* MainMenu.xib */,
 			);
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49B27FBB1D52F63E0094EE9C /* SafariTechnologyPreview.m in Sources */,
+				495863E91D56462A008DD607 /* AXUIElementExtensions.swift in Sources */,
 				498763F01D4D84E9001A6121 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
