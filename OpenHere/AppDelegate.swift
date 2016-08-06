@@ -22,7 +22,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        NSLog("NSApplicationLaunchIsDefaultLaunchKey: \(notification.userInfo?[NSApplicationLaunchIsDefaultLaunchKey])")
+        if notification.userInfo?[NSApplicationLaunchIsDefaultLaunchKey] as? Int == 1 {
+            window.makeKeyAndOrderFront(self)
+        }
     }
 
     private dynamic func handleGetURLEvent(event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
