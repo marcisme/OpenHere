@@ -11,24 +11,20 @@
 
 @implementation SafariTechnologyPreview
 
-+ (void)openURL:(NSString*) url {
-    NSParameterAssert(url);
-    [self.class openURL:url inNewWindow:NO];
-}
-
-+ (void)openURL:(NSString*) url inNewWindow:(BOOL) openInNewWindow {
++ (void)openURL:(NSString*) url inNewWindow:(BOOL) openInNewWindow activateInNewWindow:(BOOL) activateInNewWindow activateInExistingWindow:(BOOL) activateInExistingWindow {
     NSParameterAssert(url);
     SafariTechnologyPreviewApplication* application =
     [SBApplication applicationWithBundleIdentifier:@"com.apple.SafariTechnologyPreview"];
     if (openInNewWindow) {
-        [self.class openURLInNewWindow:url ofApplication:application];
+        [self.class openURLInNewWindow:url ofApplication:application activate:activateInNewWindow];
     } else {
-        [self.class openURLInNewTab:url ofApplication:application];
+        [self.class openURLInNewTab:url ofApplication:application activate:activateInExistingWindow];
     }
 }
 
 + (void)openURLInNewWindow:(NSString*) url
-             ofApplication:(SafariTechnologyPreviewApplication*) application {
+             ofApplication:(SafariTechnologyPreviewApplication*) application
+                  activate:(BOOL) activate {
     NSParameterAssert(url);
     NSParameterAssert(application);
     SafariTechnologyPreviewDocument* newDocument = [[[application classForScriptingClass:@"document"] alloc] init];
@@ -37,11 +33,14 @@
     SafariTechnologyPreviewWindow* frontWindow = [[application windows] firstObject];
     frontWindow.currentTab.URL = url;
 
-    [application activate];
+    if (activate) {
+        [application activate];
+    }
 }
 
 + (void)openURLInNewTab:(NSString*) url
-          ofApplication:(SafariTechnologyPreviewApplication*) application {
+          ofApplication:(SafariTechnologyPreviewApplication*) application
+               activate:(BOOL) activate {
     NSParameterAssert(url);
     NSParameterAssert(application);
     SafariTechnologyPreviewWindow* frontWindow = [[application windows] firstObject];
@@ -51,6 +50,10 @@
     frontWindow.currentTab = newTab;
 
     newTab.URL = url;
+
+    if (activate) {
+        [application activate];
+    }
 }
 
 @end

@@ -10,7 +10,6 @@
 
 @interface SafariTechnologyPreview : NSObject
 
-+ (void)openURL:(NSString*) url;
-+ (void)openURL:(NSString*) url inNewWindow:(BOOL) openInNewWindow;
++ (void)openURL:(NSString*) url inNewWindow:(BOOL) openInNewWindow activateInNewWindow:(BOOL) activateInNewWindow activateInExistingWindow:(BOOL) activateInExistingWindow;
 
 @end

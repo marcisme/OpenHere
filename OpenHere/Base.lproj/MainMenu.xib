@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11185.3"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -687,7 +688,42 @@
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <box fixedFrame="YES" title="Activate When Opening in..." translatesAutoresizingMaskIntoConstraints="NO" id="GFc-aF-ooF">
+                        <rect key="frame" x="124" y="16" width="232" height="114"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="cbK-JD-LRR">
+                            <rect key="frame" x="2" y="2" width="228" height="97"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yFw-dg-fzc">
+                                    <rect key="frame" x="18" y="61" width="101" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="New Window" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ruS-4J-lTH">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="ZEu-IV-4zz" name="value" keyPath="values.activateInNewWindow" id="IkH-Ik-rh2"/>
+                                    </connections>
+                                </button>
+                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UbZ-nu-nBu">
+                                    <rect key="frame" x="18" y="40" width="122" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="Existing Window" bezelStyle="regularSquare" imagePosition="left" inset="2" id="nse-xh-4EO">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="ZEu-IV-4zz" name="value" keyPath="values.activateInExistingWindow" id="oLO-OH-rbt"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </view>
+                    </box>
+                </subviews>
             </view>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="ZEu-IV-4zz"/>
     </objects>
 </document>

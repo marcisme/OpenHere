@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		495863E91D56462A008DD607 /* AXUIElementExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495863E81D56462A008DD607 /* AXUIElementExtensions.swift */; };
+		4964FFA21D566625002AE5FC /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4964FFA11D566625002AE5FC /* UserDefaultsExtensions.swift */; };
 		498763F01D4D84E9001A6121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498763EF1D4D84E9001A6121 /* AppDelegate.swift */; };
 		498763F21D4D84E9001A6121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 498763F11D4D84E9001A6121 /* Assets.xcassets */; };
 		498763F51D4D84E9001A6121 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 498763F31D4D84E9001A6121 /* MainMenu.xib */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		495863E81D56462A008DD607 /* AXUIElementExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AXUIElementExtensions.swift; sourceTree = "<group>"; };
+		4964FFA11D566625002AE5FC /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		498763EC1D4D84E9001A6121 /* OpenHere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenHere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		498763EF1D4D84E9001A6121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		498763F11D4D84E9001A6121 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				498763F61D4D84E9001A6121 /* Info.plist */,
 				498763EF1D4D84E9001A6121 /* AppDelegate.swift */,
 				495863E81D56462A008DD607 /* AXUIElementExtensions.swift */,
+				4964FFA11D566625002AE5FC /* UserDefaultsExtensions.swift */,
 				498763F11D4D84E9001A6121 /* Assets.xcassets */,
 				498763F31D4D84E9001A6121 /* MainMenu.xib */,
 			);
@@ -146,6 +149,7 @@
 			files = (
 				49B27FBB1D52F63E0094EE9C /* SafariTechnologyPreview.m in Sources */,
 				495863E91D56462A008DD607 /* AXUIElementExtensions.swift in Sources */,
+				4964FFA21D566625002AE5FC /* UserDefaultsExtensions.swift in Sources */,
 				498763F01D4D84E9001A6121 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

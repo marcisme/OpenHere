@@ -13,7 +13,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
 
+    private let defaults = UserDefaults.standard
+
     func applicationWillFinishLaunching(_ notification: Notification) {
+        defaults.registerDefaultVales()
         NSAppleEventManager.shared().setEventHandler(
             self,
             andSelector: #selector(handleGetURLEvent(event:withReplyEvent:)),
@@ -32,7 +35,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if let pid = NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.SafariTechnologyPreview").first?.processIdentifier {
                 let application = AXUIElementCreateApplication(pid)
                 let newWindow = !application.hasWindowInCurrentSpace
-                SafariTechnologyPreview.openURL(urlAsString, inNewWindow: newWindow)
+                SafariTechnologyPreview.openURL(
+                    urlAsString,
+                    inNewWindow: newWindow,
+                    activateInNewWindow: defaults.activateInNewWindow,
+                    activateInExistingWindow: defaults.activateInExistingWindow)
                 NSRunningApplication.current().terminate()
             }
         }
