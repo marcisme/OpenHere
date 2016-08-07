@@ -12,8 +12,15 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
+    @IBOutlet weak var browserPopUpButton: NSPopUpButton!
 
     private let defaults = UserDefaults.standard
+
+    private let supportedBrowserBundleIdentifiers = [
+        "com.apple.SafariTechnologyPreview",
+        "com.apple.Safari",
+        "com.google.Chrome"
+    ]
 
     func applicationWillFinishLaunching(_ notification: Notification) {
         defaults.registerDefaultVales()
@@ -25,9 +32,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        if notification.userInfo?[NSApplicationLaunchIsDefaultLaunchKey] as? Int == 1 {
+        let override = true
+        if override || notification.userInfo?[NSApplicationLaunchIsDefaultLaunchKey] as? Int == 1 {
+            let defaultBundleIdentifier = defaultBrowserBundleIdentifier()
+            supportedBrowserBundleIdentifiers.forEach { bundleIdentifier in
+                addBrowser(bundleIdentifier: bundleIdentifier, toPopUpButton: browserPopUpButton, withDefaultBundleIdentifier: defaultBundleIdentifier)
+            }
             window.makeKeyAndOrderFront(self)
         }
+    }
+
+    private func addBrowser(bundleIdentifier: String, toPopUpButton: NSPopUpButton, withDefaultBundleIdentifier defaultBundleIdentifier: String) {
+        if let applicationURL = NSWorkspace.shared().urlForApplication(withBundleIdentifier: bundleIdentifier) {
+            let resourceValues = try! applicationURL.resourceValues(forKeys: [.effectiveIconKey, .nameKey])
+            let title = resourceValues.name!
+            let image = resourceValues.effectiveIcon as! NSImage
+            let height = browserPopUpButton.fittingSize.height
+            image.size = NSSize(width: height, height: height)
+
+            browserPopUpButton.addItem(withTitle: title)
+            let item = browserPopUpButton.lastItem!
+            item.image = image
+
+            if bundleIdentifier == defaultBundleIdentifier {
+                browserPopUpButton.select(item)
+            }
+        }
+    }
+
+    private func defaultBrowserBundleIdentifier() -> String {
+        let url = NSWorkspace.shared().urlForApplication(toOpen: URL(string: "http:")!)!
+        let bundle = Bundle(url: url)!
+        return bundle.bundleIdentifier!
+    }
+
+    @IBAction func setDefaultBrowser(_ sender: NSButton) {
+        LSSetDefaultHandlerForURLScheme("http", Bundle.main.bundleIdentifier!)
     }
 
     private dynamic func handleGetURLEvent(event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
