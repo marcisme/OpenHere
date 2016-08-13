@@ -27,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        if true || notification.userInfo?[NSApplicationLaunchIsDefaultLaunchKey] as? Int == 1 {
+        if notification.userInfo?[NSApplicationLaunchIsDefaultLaunchKey] as? Int == 1 {
             browserManager.browserDescriptions.forEach { browser in
                 add(browser: browser, toPopUpButton: browserPopUpButton)
             }
