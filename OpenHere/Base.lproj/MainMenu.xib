@@ -698,6 +698,9 @@
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" id="rAs-gk-bAd"/>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="browserPopUpButtonChangedWithButton:" target="Voe-Tx-rLC" id="xjL-aW-Igh"/>
+                        </connections>
                     </popUpButton>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tCH-3O-z5h">
                         <rect key="frame" x="123" y="143" width="343" height="32"/>

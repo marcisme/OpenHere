@@ -13,6 +13,7 @@
 		498763F21D4D84E9001A6121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 498763F11D4D84E9001A6121 /* Assets.xcassets */; };
 		498763F51D4D84E9001A6121 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 498763F31D4D84E9001A6121 /* MainMenu.xib */; };
 		49B27FBB1D52F63E0094EE9C /* SafariTechnologyPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B27FBA1D52F63E0094EE9C /* SafariTechnologyPreview.m */; };
+		49C6B9AC1D56EEBA00E9E8A9 /* Safari.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C6B9AB1D56EEBA00E9E8A9 /* Safari.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,10 @@
 		49B27FB61D51A9730094EE9C /* OpenHere-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenHere-Bridging-Header.h"; sourceTree = "<group>"; };
 		49B27FB91D52F63E0094EE9C /* SafariTechnologyPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafariTechnologyPreview.h; sourceTree = "<group>"; };
 		49B27FBA1D52F63E0094EE9C /* SafariTechnologyPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafariTechnologyPreview.m; sourceTree = "<group>"; };
+		49C6B9A81D56EBA300E9E8A9 /* ChromeSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChromeSupport.h; sourceTree = "<group>"; };
+		49C6B9A91D56EBA300E9E8A9 /* SafariSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafariSupport.h; sourceTree = "<group>"; };
+		49C6B9AA1D56EEBA00E9E8A9 /* Safari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Safari.h; sourceTree = "<group>"; };
+		49C6B9AB1D56EEBA00E9E8A9 /* Safari.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Safari.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +64,13 @@
 		498763EE1D4D84E9001A6121 /* OpenHere */ = {
 			isa = PBXGroup;
 			children = (
+				49C6B9A81D56EBA300E9E8A9 /* ChromeSupport.h */,
 				49B27FB61D51A9730094EE9C /* OpenHere-Bridging-Header.h */,
+				49C6B9AA1D56EEBA00E9E8A9 /* Safari.h */,
+				49C6B9A91D56EBA300E9E8A9 /* SafariSupport.h */,
 				49B27FB91D52F63E0094EE9C /* SafariTechnologyPreview.h */,
 				49B27FB51D51A8990094EE9C /* SafariTechnologyPreviewSupport.h */,
+				49C6B9AB1D56EEBA00E9E8A9 /* Safari.m */,
 				49B27FBA1D52F63E0094EE9C /* SafariTechnologyPreview.m */,
 				498763F61D4D84E9001A6121 /* Info.plist */,
 				498763EF1D4D84E9001A6121 /* AppDelegate.swift */,
@@ -147,6 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C6B9AC1D56EEBA00E9E8A9 /* Safari.m in Sources */,
 				49B27FBB1D52F63E0094EE9C /* SafariTechnologyPreview.m in Sources */,
 				495863E91D56462A008DD607 /* AXUIElementExtensions.swift in Sources */,
 				4964FFA21D566625002AE5FC /* UserDefaultsExtensions.swift in Sources */,

@@ -7,4 +7,4 @@
 //
 
 #import "SafariTechnologyPreview.h"
-#import "SafariTechnologyPreviewSupport.h"
+#import "Safari.h"
