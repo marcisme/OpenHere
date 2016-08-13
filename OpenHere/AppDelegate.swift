@@ -27,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        if notification.userInfo?[NSApplicationLaunchIsDefaultLaunchKey] as? Int == 1 {
+        if true || notification.userInfo?[NSApplicationLaunchIsDefaultLaunchKey] as? Int == 1 {
             browserManager.browserDescriptions.forEach { browser in
                 add(browser: browser, toPopUpButton: browserPopUpButton)
             }
@@ -110,10 +110,10 @@ class BrowserManager {
 
     private typealias BBI = BrowserBundleIdentifier
 
-    private let supportedBrowsers = [
+    private let supportedBrowsers: [String:Browser] = [
         BBI.safariTechnologyPreview: Safari(bundleIdentifier: BBI.safariTechnologyPreview),
         BBI.safari: Safari(bundleIdentifier: BBI.safari),
-        BBI.chrome: Safari(bundleIdentifier: BBI.chrome)
+        BBI.chrome: Chrome(bundleIdentifier: BBI.chrome)
     ]
 
     private lazy var defaultBrowserBundleIdentifier: String = {
