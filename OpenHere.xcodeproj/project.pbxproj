@@ -14,6 +14,7 @@
 		498763F51D4D84E9001A6121 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 498763F31D4D84E9001A6121 /* MainMenu.xib */; };
 		49895C111D5F9C6D00A7B5D5 /* Chrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 49895C0B1D5F9C6D00A7B5D5 /* Chrome.m */; };
 		49895C121D5F9C6D00A7B5D5 /* Safari.m in Sources */ = {isa = PBXBuildFile; fileRef = 49895C0E1D5F9C6D00A7B5D5 /* Safari.m */; };
+		49895C141D5F9CD500A7B5D5 /* BrowserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49895C131D5F9CD500A7B5D5 /* BrowserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		49895C0E1D5F9C6D00A7B5D5 /* Safari.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Safari.m; sourceTree = "<group>"; };
 		49895C0F1D5F9C6D00A7B5D5 /* SafariSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafariSupport.h; sourceTree = "<group>"; };
 		49895C101D5F9C6D00A7B5D5 /* SafariTechnologyPreviewSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafariTechnologyPreviewSupport.h; sourceTree = "<group>"; };
+		49895C131D5F9CD500A7B5D5 /* BrowserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserManager.swift; sourceTree = "<group>"; };
 		49B27FB61D51A9730094EE9C /* OpenHere-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenHere-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 				498763F61D4D84E9001A6121 /* Info.plist */,
 				498763EF1D4D84E9001A6121 /* AppDelegate.swift */,
 				495863E81D56462A008DD607 /* AXUIElementExtensions.swift */,
+				49895C131D5F9CD500A7B5D5 /* BrowserManager.swift */,
 				4964FFA11D566625002AE5FC /* UserDefaultsExtensions.swift */,
 				498763F11D4D84E9001A6121 /* Assets.xcassets */,
 				49895C081D5F9C6D00A7B5D5 /* Browsers */,
@@ -166,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49895C141D5F9CD500A7B5D5 /* BrowserManager.swift in Sources */,
 				49895C121D5F9C6D00A7B5D5 /* Safari.m in Sources */,
 				495863E91D56462A008DD607 /* AXUIElementExtensions.swift in Sources */,
 				49895C111D5F9C6D00A7B5D5 /* Chrome.m in Sources */,
