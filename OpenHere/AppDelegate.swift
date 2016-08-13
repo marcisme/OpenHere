@@ -28,14 +28,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         if notification.userInfo?[NSApplicationLaunchIsDefaultLaunchKey] as? Int == 1 {
-            browserManager.browsers.forEach { browser in
+            browserManager.browserDescriptions.forEach { browser in
                 add(browser: browser, toPopUpButton: browserPopUpButton)
             }
             window.makeKeyAndOrderFront(self)
         }
     }
 
-    private func add(browser: Browser, toPopUpButton: NSPopUpButton) {
+    private func add(browser: BrowserDescription, toPopUpButton: NSPopUpButton) {
         let image = browser.image
         let height = browserPopUpButton.fittingSize.height
         image.size = NSSize(width: height, height: height)
@@ -75,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
-struct Browser {
+struct BrowserDescription {
     let bundleIdentifier: String
     let name: String
     let image: NSImage
@@ -84,8 +84,8 @@ struct Browser {
 
 class BrowserManager {
 
-    lazy var browsers: [Browser] = {
-        return self.supportedBrowsers.keys.flatMap { bundleIdentifier -> Browser? in
+    lazy var browserDescriptions: [BrowserDescription] = {
+        return self.supportedBrowsers.keys.flatMap { bundleIdentifier -> BrowserDescription? in
             guard let applicationURL = NSWorkspace.shared().urlForApplication(withBundleIdentifier: bundleIdentifier) else {
                 return nil
             }
@@ -98,7 +98,7 @@ class BrowserManager {
                 }
                 return bundleIdentifier == self.defaultBrowserBundleIdentifier
             }
-            return Browser(bundleIdentifier: bundleIdentifier, name: name, image: image, isTargetBrowser: isTargetBrowser(bundleIdentifier))
+            return BrowserDescription(bundleIdentifier: bundleIdentifier, name: name, image: image, isTargetBrowser: isTargetBrowser(bundleIdentifier))
         }
     }()
 
