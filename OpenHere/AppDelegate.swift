@@ -17,6 +17,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let defaults = UserDefaults.standard
     private let browserManager = BrowserManager()
 
+    private var isOpeningURL = false
+
     func applicationWillFinishLaunching(_ notification: Notification) {
         defaults.registerDefaultVales()
         NSAppleEventManager.shared().setEventHandler(
@@ -27,10 +29,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        if notification.userInfo?[NSApplicationLaunchIsDefaultLaunchKey] as? Int == 1 {
-            browserManager.browserDescriptions.forEach { browser in
-                add(browser: browser, toPopUpButton: browserPopUpButton)
-            }
+        browserManager.browserDescriptions.forEach { browser in
+            add(browser: browser, toPopUpButton: browserPopUpButton)
+        }
+    }
+
+    func applicationDidBecomeActive(_ notification: Notification) {
+        defer { isOpeningURL = false }
+        if !isOpeningURL {
             window.makeKeyAndOrderFront(self)
         }
     }
@@ -63,6 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private dynamic func handleGetURLEvent(event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
+        isOpeningURL = true
         if let urlAsString = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue {
             if let pid = NSRunningApplication.runningApplications(withBundleIdentifier: defaults.targetBrowserBundleIdentifier!).first?.processIdentifier {
                 let application = AXUIElementCreateApplication(pid)
