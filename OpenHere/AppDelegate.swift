@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var browserPopUpButton: NSPopUpButton!
+    @IBOutlet weak var setDefaultBrowserButton: NSButton!
 
     private let defaults = UserDefaults.standard
     private let browserManager = BrowserManager()
@@ -46,6 +47,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidBecomeActive(_ notification: Notification) {
         defer { isOpeningURL = false }
         if !isOpeningURL {
+            if browserManager.isDefaultBrowser {
+                setDefaultBrowserButton.isEnabled = false
+            }
             window.makeKeyAndOrderFront(self)
         }
     }

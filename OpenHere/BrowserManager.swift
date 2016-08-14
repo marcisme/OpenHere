@@ -35,6 +35,10 @@ class BrowserManager {
         }
     }()
 
+    var isDefaultBrowser: Bool {
+        return defaultBrowserBundleIdentifier == Bundle.main.bundleIdentifier!
+    }
+
     private struct BrowserBundleIdentifier {
         static let safari = "com.apple.Safari"
         static let safariTechnologyPreview = "com.apple.SafariTechnologyPreview"
