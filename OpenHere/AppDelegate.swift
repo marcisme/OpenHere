@@ -20,12 +20,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var isOpeningURL = false
 
     func applicationWillFinishLaunching(_ notification: Notification) {
+        guard isAccessibilityEnabled() else {
+            NSRunningApplication.current().terminate()
+            return
+        }
         defaults.registerDefaultVales()
         NSAppleEventManager.shared().setEventHandler(
             self,
             andSelector: #selector(handleGetURLEvent(event:withReplyEvent:)),
             forEventClass: AEEventClass(kInternetEventClass),
             andEventID: AEEventID(kAEGetURL))
+    }
+
+    private func isAccessibilityEnabled() -> Bool {
+        let options: NSDictionary = [String(kAXTrustedCheckOptionPrompt.takeUnretainedValue()): true]
+        return AXIsProcessTrustedWithOptions(options)
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
