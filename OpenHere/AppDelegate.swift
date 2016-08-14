@@ -73,6 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @IBAction func setDefaultBrowser(_ sender: NSButton) {
+        setDefaultBrowserButton.isEnabled = false
         LSSetDefaultHandlerForURLScheme("http", Bundle.main.bundleIdentifier!)
         setTargetBrowserToSelectedBrowser()
     }
