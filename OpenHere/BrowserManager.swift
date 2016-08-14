@@ -25,18 +25,26 @@ class BrowserManager {
             let resourceValues = try! applicationURL.resourceValues(forKeys: [.effectiveIconKey, .nameKey])
             let name = resourceValues.name!
             let image = resourceValues.effectiveIcon as! NSImage
-            func isTargetBrowser(_ bundleIdentifier: String) -> Bool {
-                if let targetBrowserBundleIdentifier = self.defaults.targetBrowserBundleIdentifier {
-                    return bundleIdentifier == targetBrowserBundleIdentifier
-                }
-                return bundleIdentifier == self.defaultBrowserBundleIdentifier
-            }
-            return BrowserDescription(bundleIdentifier: bundleIdentifier, name: name, image: image, isTargetBrowser: isTargetBrowser(bundleIdentifier))
+            return BrowserDescription(bundleIdentifier: bundleIdentifier, name: name, image: image, isTargetBrowser: self.isTargetBrowser(bundleIdentifier))
         }
     }()
 
+    private func isTargetBrowser(_ bundleIdentifier: String) -> Bool {
+        if isDefaultBrowser {
+            // we *should* have a target browser, but not selecting one is better than crashing with a forced unwrap
+            return defaults.targetBrowserBundleIdentifier.map { bundleIdentifier == $0 } ?? false
+        } else {
+            return bundleIdentifier == defaultBrowserBundleIdentifier
+        }
+    }
+
     var isDefaultBrowser: Bool {
         return defaultBrowserBundleIdentifier == Bundle.main.bundleIdentifier!
+    }
+
+    var isAccessibilityEnabled: Bool {
+        let options: NSDictionary = [String(kAXTrustedCheckOptionPrompt.takeUnretainedValue()): true]
+        return AXIsProcessTrustedWithOptions(options)
     }
 
     private struct BrowserBundleIdentifier {
@@ -61,11 +69,17 @@ class BrowserManager {
 
     private let defaults = UserDefaults.standard
 
+    func setDefaultBrowser() {
+        LSSetDefaultHandlerForURLScheme("http", Bundle.main.bundleIdentifier!)
+    }
+
     func setTargetBrowser(index: Int) {
         defaults.targetBrowserBundleIdentifier = Array(supportedBrowsers.keys)[index]
     }
 
-    func openURL(url: String, inNewWindow: Bool) {
+    func openURL(url: String) {
+        let pid = NSRunningApplication.runningApplications(withBundleIdentifier: defaults.targetBrowserBundleIdentifier!).first?.processIdentifier
+        let inNewWindow = pid.map { !AXUIElementCreateApplication($0).hasWindowInCurrentSpace } ?? false
         supportedBrowsers[defaults.targetBrowserBundleIdentifier!]?.openURL(url, inNewWindow: inNewWindow, activateInNewWindow: defaults.activateInNewWindow, activateInExistingWindow: defaults.activateInExistingWindow)
     }
 

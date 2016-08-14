@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var isOpeningURL = false
 
     func applicationWillFinishLaunching(_ notification: Notification) {
-        guard isAccessibilityEnabled() else {
+        guard browserManager.isAccessibilityEnabled else {
             NSRunningApplication.current().terminate()
             return
         }
@@ -31,11 +31,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             andSelector: #selector(handleGetURLEvent(event:withReplyEvent:)),
             forEventClass: AEEventClass(kInternetEventClass),
             andEventID: AEEventID(kAEGetURL))
-    }
-
-    private func isAccessibilityEnabled() -> Bool {
-        let options: NSDictionary = [String(kAXTrustedCheckOptionPrompt.takeUnretainedValue()): true]
-        return AXIsProcessTrustedWithOptions(options)
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -74,7 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBAction func setDefaultBrowser(_ sender: NSButton) {
         setDefaultBrowserButton.isEnabled = false
-        LSSetDefaultHandlerForURLScheme("http", Bundle.main.bundleIdentifier!)
+        browserManager.setDefaultBrowser()
         setTargetBrowserToSelectedBrowser()
     }
 
@@ -85,12 +80,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private dynamic func handleGetURLEvent(event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
         isOpeningURL = true
         if let urlAsString = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue {
-            if let pid = NSRunningApplication.runningApplications(withBundleIdentifier: defaults.targetBrowserBundleIdentifier!).first?.processIdentifier {
-                let application = AXUIElementCreateApplication(pid)
-                let newWindow = !application.hasWindowInCurrentSpace
-                browserManager.openURL(url: urlAsString, inNewWindow: newWindow)
-                NSRunningApplication.current().terminate()
-            }
+            browserManager.openURL(url: urlAsString)
+            NSRunningApplication.current().terminate()
         }
     }
 
