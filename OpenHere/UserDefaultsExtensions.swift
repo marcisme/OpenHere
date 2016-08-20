@@ -10,35 +10,37 @@ import Foundation
 
 extension UserDefaults {
 
-    private static let activateInNewWindowKey = "activateInNewWindow"
-    private static let activateInExistingWindowKey = "activateInExistingWindow"
-    private static let targetBrowserBundleIdentifierKey = "targetBrowserBundleIdentifier"
+    private struct Keys {
+        static let activateInNewWindow = "activateInNewWindow"
+        static let activateInExistingWindow = "activateInExistingWindow"
+        static let targetBrowserBundleIdentifier = "targetBrowserBundleIdentifier"
+    }
 
     private static let defaultValues = [
-        activateInNewWindowKey: true,
-        activateInExistingWindowKey: false
+        Keys.activateInNewWindow: true,
+        Keys.activateInExistingWindow: false
     ]
 
     var activateInNewWindow: Bool {
-        return bool(forKey: self.dynamicType.activateInNewWindowKey)
+        return bool(forKey: Keys.activateInNewWindow)
     }
 
     var activateInExistingWindow: Bool {
-        return bool(forKey: self.dynamicType.activateInExistingWindowKey)
+        return bool(forKey: Keys.activateInExistingWindow)
     }
 
     var targetBrowserBundleIdentifier: String? {
         get {
-            return string(forKey: self.dynamicType.targetBrowserBundleIdentifierKey)
+            return string(forKey: Keys.targetBrowserBundleIdentifier)
         }
         set {
-            set(newValue, forKey: self.dynamicType.targetBrowserBundleIdentifierKey)
+            set(newValue, forKey: Keys.targetBrowserBundleIdentifier)
             synchronize()
         }
     }
 
     func registerDefaultVales() {
-        register(defaults: self.dynamicType.defaultValues)
+        register(defaults: type(of: self).defaultValues)
     }
     
 }

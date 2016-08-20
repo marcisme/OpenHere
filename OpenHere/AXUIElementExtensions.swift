@@ -13,24 +13,24 @@ extension AXUIElement {
         return windows?.first(where: { $0.subrole == "AXStandardWindow" }) != nil
     }
 
-    var attributeNames: Array<String>? {
-        var attributeNames: NSArray?
-        let error = withUnsafeMutablePointer(&attributeNames) { pointer -> AXError in
-            AXUIElementCopyAttributeNames(self, UnsafeMutablePointer(pointer))
+    var attributeNames: [String]? {
+        var attributeNames: CFArray?
+        let error = withUnsafeMutablePointer(to: &attributeNames) { pointer -> AXError in
+            AXUIElementCopyAttributeNames(self, pointer)
         }
         if error == .success {
-            return attributeNames as? Array<String>
+            return attributeNames as AnyObject as? [String]
         }
         return .none
     }
 
-    var windows: Array<AXUIElement>? {
-        var windows: NSArray?
-        let error = withUnsafeMutablePointer(&windows) { pointer -> AXError in
-            AXUIElementCopyAttributeValues(self, kAXWindowsAttribute, 0, 10, UnsafeMutablePointer(pointer))
+    var windows: [AXUIElement]? {
+        var windows: CFArray?
+        let error = withUnsafeMutablePointer(to: &windows) { pointer -> AXError in
+            AXUIElementCopyAttributeValues(self, kAXWindowsAttribute as CFString, 0, 10, pointer)
         }
         if error == .success {
-            return windows as? Array<AXUIElement>
+            return windows as AnyObject as? [AXUIElement]
         }
         return .none
     }
@@ -45,8 +45,8 @@ extension AXUIElement {
 
     private func attributeValue(attributeName: String) -> AnyObject? {
         var value: AnyObject?
-        let error = withUnsafeMutablePointer(&value) { pointer -> AXError in
-            AXUIElementCopyAttributeValue(self, attributeName, UnsafeMutablePointer(pointer))
+        let error = withUnsafeMutablePointer(to: &value) { pointer -> AXError in
+            AXUIElementCopyAttributeValue(self, attributeName as CFString, pointer)
         }
         if error == .success {
             return value

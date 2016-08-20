@@ -70,7 +70,7 @@ class BrowserManager {
     private let defaults = UserDefaults.standard
 
     func setDefaultBrowser() {
-        LSSetDefaultHandlerForURLScheme("http", Bundle.main.bundleIdentifier!)
+        LSSetDefaultHandlerForURLScheme("http" as CFString, Bundle.main.bundleIdentifier! as CFString)
     }
 
     func setTargetBrowser(index: Int) {
