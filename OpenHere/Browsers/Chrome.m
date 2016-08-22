@@ -27,33 +27,53 @@
 - (void)openURL:(NSString*) url inBrowserTarget:(BrowserTarget) browserTarget andActivate:(BOOL) activate {
     NSParameterAssert(url);
     NSParameterAssert(browserTarget);
-    ChromeApplication* application =
-    [SBApplication applicationWithBundleIdentifier:self.bundleIdentifier];
 
     switch (browserTarget) {
         case BrowserTargetNewWindow: {
-            ChromeWindow* newWindow = [[[application classForScriptingClass:@"window"] alloc] init];
-            [[application windows] addObject:newWindow];
-            newWindow.activeTab.URL = url;
+            [self openURL:url inNewWindowAndActivate:activate];
             break;
         }
         case BrowserTargetNewTab: {
-            ChromeWindow *frontWindow = [[application windows] firstObject];
-            ChromeTab *newTab = [[[application classForScriptingClass:@"tab"] alloc] init];
-            [frontWindow.tabs addObject:newTab];
-            frontWindow.activeTab.URL = url;
+            [self openURL:url inNewTabAndActivate:activate];
             break;
         }
         default: {
-            // TODO: Make this  shit work
-            ChromeWindow *frontWindow = [[application windows] firstObject];
-            frontWindow.activeTab.URL = url;
+            [self openURL:url];
             break;
         }
     }
+}
 
+- (void)openURL:(NSString *)url inNewWindowAndActivate:(BOOL)activate {
+    ChromeApplication* application =
+    [SBApplication applicationWithBundleIdentifier:self.bundleIdentifier];
+    ChromeWindow* newWindow = [[[application classForScriptingClass:@"window"] alloc] init];
+    [[application windows] addObject:newWindow];
+    newWindow.activeTab.URL = url;
     if (activate) {
         [application activate];
+    }
+}
+
+- (void)openURL:(NSString *)url inNewTabAndActivate:(BOOL)activate {
+    ChromeApplication* application =
+    [SBApplication applicationWithBundleIdentifier:self.bundleIdentifier];
+    ChromeWindow *frontWindow = [[application windows] firstObject];
+    ChromeTab *newTab = [[[application classForScriptingClass:@"tab"] alloc] init];
+    [frontWindow.tabs addObject:newTab];
+    frontWindow.activeTab.URL = url;
+    if (activate) {
+        [application activate];
+    }
+}
+
+- (void)openURL:(NSString *)url {
+    NSWorkspace* workspace = [NSWorkspace sharedWorkspace];
+    NSURL* applicationURL = [workspace URLForApplicationWithBundleIdentifier:self.bundleIdentifier];
+    NSDictionary* options = @{NSWorkspaceLaunchConfigurationArguments: @[url]};
+    NSError* error;
+    if (![workspace launchApplicationAtURL:applicationURL options:0 configuration:options error:&error]) {
+        NSLog(@"Failed to launch Chrome: %@", error);
     }
 }
 
