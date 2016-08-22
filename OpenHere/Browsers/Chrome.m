@@ -24,40 +24,33 @@
     return self;
 }
 
-- (void)openURL:(NSString*) url inNewWindow:(BOOL) openInNewWindow activateInNewWindow:(BOOL) activateInNewWindow activateInExistingWindow:(BOOL) activateInExistingWindow {
+- (void)openURL:(NSString*) url inBrowserTarget:(BrowserTarget) browserTarget andActivate:(BOOL) activate {
     NSParameterAssert(url);
+    NSParameterAssert(browserTarget);
     ChromeApplication* application =
     [SBApplication applicationWithBundleIdentifier:self.bundleIdentifier];
-    if (openInNewWindow) {
-        [self openURLInNewWindow:url ofApplication:application activate:activateInNewWindow];
-    } else {
-        [self openURLInNewTab:url ofApplication:application activate:activateInExistingWindow];
+
+    switch (browserTarget) {
+        case BrowserTargetNewWindow: {
+            ChromeWindow* newWindow = [[[application classForScriptingClass:@"window"] alloc] init];
+            [[application windows] addObject:newWindow];
+            newWindow.activeTab.URL = url;
+            break;
+        }
+        case BrowserTargetNewTab: {
+            ChromeWindow *frontWindow = [[application windows] firstObject];
+            ChromeTab *newTab = [[[application classForScriptingClass:@"tab"] alloc] init];
+            [frontWindow.tabs addObject:newTab];
+            frontWindow.activeTab.URL = url;
+            break;
+        }
+        default: {
+            // TODO: Make this  shit work
+            ChromeWindow *frontWindow = [[application windows] firstObject];
+            frontWindow.activeTab.URL = url;
+            break;
+        }
     }
-}
-
-- (void)openURLInNewWindow:(NSString*) url
-             ofApplication:(ChromeApplication*) application
-                  activate:(BOOL) activate {
-    NSParameterAssert(url);
-    NSParameterAssert(application);
-    ChromeWindow* newWindow = [[[application classForScriptingClass:@"window"] alloc] init];
-    [[application windows] addObject:newWindow];
-    newWindow.activeTab.URL = url;
-
-    if (activate) {
-        [application activate];
-    }
-}
-
-- (void)openURLInNewTab:(NSString*) url
-          ofApplication:(ChromeApplication*) application
-               activate:(BOOL) activate {
-    NSParameterAssert(url);
-    NSParameterAssert(application);
-    ChromeWindow *frontWindow = [[application windows] firstObject];
-    ChromeTab *newTab = [[[application classForScriptingClass:@"tab"] alloc] init];
-    [frontWindow.tabs addObject:newTab];
-    frontWindow.activeTab.URL = url;
 
     if (activate) {
         [application activate];

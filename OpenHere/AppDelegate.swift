@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        guard !isOpeningURL else { return }
         browserManager.browserDescriptions.forEach { browser in
             add(browser: browser, toPopUpButton: browserPopUpButton)
         }
@@ -41,12 +42,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidBecomeActive(_ notification: Notification) {
         defer { isOpeningURL = false }
-        if !isOpeningURL {
-            if browserManager.isDefaultBrowser {
-                setDefaultBrowserButton.isEnabled = false
-            }
-            window.makeKeyAndOrderFront(self)
+        guard !isOpeningURL else { return }
+        if browserManager.isDefaultBrowser {
+            setDefaultBrowserButton.isEnabled = false
         }
+        window.makeKeyAndOrderFront(self)
     }
 
     private func add(browser: BrowserDescription, toPopUpButton: NSPopUpButton) {

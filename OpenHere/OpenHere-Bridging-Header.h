@@ -6,5 +6,6 @@
 //  Copyright © 2016 Marc Schwieterman. All rights reserved.
 //
 
+#import "Browser.h"
 #import "Chrome.h"
 #import "Safari.h"

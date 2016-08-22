@@ -79,8 +79,17 @@ class BrowserManager {
 
     func openURL(url: String) {
         let pid = NSRunningApplication.runningApplications(withBundleIdentifier: defaults.targetBrowserBundleIdentifier!).first?.processIdentifier
-        let inNewWindow = pid.map { !AXUIElementCreateApplication($0).hasWindowInCurrentSpace } ?? false
-        supportedBrowsers[defaults.targetBrowserBundleIdentifier!]?.openURL(url, inNewWindow: inNewWindow, activateInNewWindow: defaults.activateInNewWindow, activateInExistingWindow: defaults.activateInExistingWindow)
+        let browser = supportedBrowsers[defaults.targetBrowserBundleIdentifier!]
+
+        let hasWindowInCurrentSpace = pid.map { AXUIElementCreateApplication($0).hasWindowInCurrentSpace }
+        switch hasWindowInCurrentSpace {
+        case true?:
+            browser?.openURL(url, in: .newTab, andActivate: defaults.activateInExistingWindow)
+        case false?:
+            browser?.openURL(url, in: .newWindow, andActivate: defaults.activateInNewWindow)
+        default:
+            browser?.openURL(url, in: .default, andActivate: true)
+        }
     }
 
 }

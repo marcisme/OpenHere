@@ -24,45 +24,34 @@
     return self;
 }
 
-- (void)openURL:(NSString*) url inNewWindow:(BOOL) openInNewWindow activateInNewWindow:(BOOL) activateInNewWindow activateInExistingWindow:(BOOL) activateInExistingWindow {
+- (void)openURL:(NSString*) url inBrowserTarget:(BrowserTarget) browserTarget andActivate:(BOOL) activate {
     NSParameterAssert(url);
+    NSParameterAssert(browserTarget);
     SafariApplication* application =
     [SBApplication applicationWithBundleIdentifier:self.bundleIdentifier];
-    if (openInNewWindow) {
-        [self openURLInNewWindow:url ofApplication:application activate:activateInNewWindow];
-    } else {
-        [self openURLInNewTab:url ofApplication:application activate:activateInExistingWindow];
+
+    switch (browserTarget) {
+        case BrowserTargetNewWindow: {
+            SafariDocument* newDocument = [[[application classForScriptingClass:@"document"] alloc] init];
+            [[application documents] addObject:newDocument];
+            SafariWindow* frontWindow = [[application windows] firstObject];
+            frontWindow.currentTab.URL = url;
+            break;
+        }
+        case BrowserTargetNewTab: {
+            SafariWindow* frontWindow = [[application windows] firstObject];
+            SafariTab* newTab = [[[application classForScriptingClass:@"tab"] alloc] init];
+            [[frontWindow tabs] addObject:newTab];
+            frontWindow.currentTab = newTab;
+            newTab.URL = url;
+            break;
+        }
+        default: {
+            SafariWindow* frontWindow = [[application windows] firstObject];
+            frontWindow.currentTab.URL = url;
+            break;
+        }
     }
-}
-
-- (void)openURLInNewWindow:(NSString*) url
-             ofApplication:(SafariApplication*) application
-                  activate:(BOOL) activate {
-    NSParameterAssert(url);
-    NSParameterAssert(application);
-    SafariDocument* newDocument = [[[application classForScriptingClass:@"document"] alloc] init];
-    [[application documents] addObject:newDocument];
-
-    SafariWindow* frontWindow = [[application windows] firstObject];
-    frontWindow.currentTab.URL = url;
-
-    if (activate) {
-        [application activate];
-    }
-}
-
-- (void)openURLInNewTab:(NSString*) url
-          ofApplication:(SafariApplication*) application
-               activate:(BOOL) activate {
-    NSParameterAssert(url);
-    NSParameterAssert(application);
-    SafariWindow* frontWindow = [[application windows] firstObject];
-
-    SafariTab* newTab = [[[application classForScriptingClass:@"tab"] alloc] init];
-    [[frontWindow tabs] addObject:newTab];
-    frontWindow.currentTab = newTab;
-
-    newTab.URL = url;
 
     if (activate) {
         [application activate];
