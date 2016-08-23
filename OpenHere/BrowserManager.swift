@@ -90,7 +90,7 @@ class BrowserManager {
         case false?:
             browser?.openURL(url, in: .newWindow, andActivate: shouldActivate)
         default:
-            browser?.openURL(url, in: .default, andActivate: true)
+            browser?.openURL(url, in: .default)
         }
     }
 

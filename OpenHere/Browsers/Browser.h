@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, BrowserTarget) {
 @protocol Browser <NSObject>
 
 NS_ASSUME_NONNULL_BEGIN
+- (void)openURL:(NSString*) url inBrowserTarget:(BrowserTarget) browserTarget;
 - (void)openURL:(NSString*) url inBrowserTarget:(BrowserTarget) browserTarget andActivate:(BOOL) activate;
 NS_ASSUME_NONNULL_END
 

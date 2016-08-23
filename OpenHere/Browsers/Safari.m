@@ -24,6 +24,12 @@
     return self;
 }
 
+- (void)openURL:(NSString*) url inBrowserTarget:(BrowserTarget) browserTarget {
+    NSParameterAssert(url);
+    NSParameterAssert(browserTarget);
+    [self openURL:url inBrowserTarget:browserTarget andActivate:false];
+}
+
 - (void)openURL:(NSString*) url inBrowserTarget:(BrowserTarget) browserTarget andActivate:(BOOL) activate {
     NSParameterAssert(url);
     NSParameterAssert(browserTarget);
