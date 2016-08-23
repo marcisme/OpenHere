@@ -14,11 +14,14 @@ extension UserDefaults {
         static let activateInNewWindow = "activateInNewWindow"
         static let activateInExistingWindow = "activateInExistingWindow"
         static let targetBrowserBundleIdentifier = "targetBrowserBundleIdentifier"
+        static let timeOfLastActivation = "timeOfLastActivation"
+        static let activationDelayInterval = "activationDelayInterval"
     }
 
-    private static let defaultValues = [
+    private static let defaultValues: [String: Any] = [
         Keys.activateInNewWindow: true,
-        Keys.activateInExistingWindow: false
+        Keys.activateInExistingWindow: false,
+        Keys.activationDelayInterval: 10
     ]
 
     var activateInNewWindow: Bool {
@@ -39,9 +42,28 @@ extension UserDefaults {
         }
     }
 
+    var timeOfLastActivation: Date? {
+        get {
+            return value(forKey: Keys.timeOfLastActivation) as? Date
+        }
+        set {
+            set(newValue, forKey: Keys.timeOfLastActivation)
+            synchronize()
+        }
+    }
+
+    var activationDelayInterval: TimeInterval {
+        get {
+            return double(forKey: Keys.activationDelayInterval)
+        }
+        set {
+            set(newValue, forKey: Keys.activationDelayInterval)
+            synchronize()
+        }
+    }
+
     func registerDefaultVales() {
         register(defaults: type(of: self).defaultValues)
     }
     
 }
-  

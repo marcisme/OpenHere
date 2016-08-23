@@ -81,15 +81,24 @@ class BrowserManager {
         let pid = NSRunningApplication.runningApplications(withBundleIdentifier: defaults.targetBrowserBundleIdentifier!).first?.processIdentifier
         let browser = supportedBrowsers[defaults.targetBrowserBundleIdentifier!]
 
+        defer { defaults.timeOfLastActivation = Date() }
+
         let hasWindowInCurrentSpace = pid.map { AXUIElementCreateApplication($0).hasWindowInCurrentSpace }
         switch hasWindowInCurrentSpace {
         case true?:
-            browser?.openURL(url, in: .newTab, andActivate: defaults.activateInExistingWindow)
+            browser?.openURL(url, in: .newTab, andActivate: true)
         case false?:
-            browser?.openURL(url, in: .newWindow, andActivate: defaults.activateInNewWindow)
+            browser?.openURL(url, in: .newWindow, andActivate: shouldActivate)
         default:
             browser?.openURL(url, in: .default, andActivate: true)
         }
+    }
+
+    private var shouldActivate: Bool {
+        let timeOfLastActivation = defaults.timeOfLastActivation
+        let timeSinceLastActivation = abs(timeOfLastActivation?.timeIntervalSinceNow ?? 0)
+        let activate = timeSinceLastActivation > defaults.activationDelayInterval
+        return activate
     }
 
 }
