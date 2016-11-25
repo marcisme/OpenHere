@@ -10,5 +10,5 @@ function generate {
 
 generate '/Applications/Safari.app' 'Safari'
 generate '/Applications/Safari\ Technology\ Preview.app' 'SafariTechnologyPreview'
-generate '/usr/local/Caskroom/google-chrome/latest/Google\ Chrome.app' 'Chrome'
+generate '/Applications/Google\ Chrome.app' 'Chrome'
 

@@ -28,8 +28,6 @@
 - (void) stop;  // Stop the current tab from loading.
 - (void) viewSource;  // View the HTML source of the tab.
 - (id) executeJavascript:(NSString *)javascript;  // Execute a piece of javascript.
-- (void) enterPresentationMode;  // Enter presentation mode in window.
-- (void) exitPresentationMode;  // Exit presentation mode in window.
 
 @end
 
@@ -125,12 +123,6 @@
 @property (copy) NSString *URL;  // The URL of the bookmark.
 @property (copy, readonly) NSNumber *index;  // Returns the index with respect to its parent bookmark folder
 
-
-@end
-
-@interface ChromeWindow (ChromiumSuite)
-
-@property (readonly) BOOL presenting;  // Whether the window is in presentation mode.
 
 @end
 
