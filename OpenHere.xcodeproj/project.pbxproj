@@ -15,6 +15,7 @@
 		49895C111D5F9C6D00A7B5D5 /* Chrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 49895C0B1D5F9C6D00A7B5D5 /* Chrome.m */; };
 		49895C121D5F9C6D00A7B5D5 /* Safari.m in Sources */ = {isa = PBXBuildFile; fileRef = 49895C0E1D5F9C6D00A7B5D5 /* Safari.m */; };
 		49895C141D5F9CD500A7B5D5 /* BrowserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49895C131D5F9CD500A7B5D5 /* BrowserManager.swift */; };
+		49B781B81DE8D00900A0875F /* SafariTechnologyPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B781B71DE8D00900A0875F /* SafariTechnologyPreview.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		49895C101D5F9C6D00A7B5D5 /* SafariTechnologyPreviewSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafariTechnologyPreviewSupport.h; sourceTree = "<group>"; };
 		49895C131D5F9CD500A7B5D5 /* BrowserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserManager.swift; sourceTree = "<group>"; };
 		49B27FB61D51A9730094EE9C /* OpenHere-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenHere-Bridging-Header.h"; sourceTree = "<group>"; };
+		49B781B61DE8CFC000A0875F /* SafariTechnologyPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafariTechnologyPreview.h; sourceTree = "<group>"; };
+		49B781B71DE8D00900A0875F /* SafariTechnologyPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafariTechnologyPreview.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +91,11 @@
 				49895C0C1D5F9C6D00A7B5D5 /* ChromeSupport.h */,
 				49895C0D1D5F9C6D00A7B5D5 /* Safari.h */,
 				49895C0F1D5F9C6D00A7B5D5 /* SafariSupport.h */,
+				49B781B61DE8CFC000A0875F /* SafariTechnologyPreview.h */,
 				49895C101D5F9C6D00A7B5D5 /* SafariTechnologyPreviewSupport.h */,
 				49895C0B1D5F9C6D00A7B5D5 /* Chrome.m */,
 				49895C0E1D5F9C6D00A7B5D5 /* Safari.m */,
+				49B781B71DE8D00900A0875F /* SafariTechnologyPreview.m */,
 			);
 			path = Browsers;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 				49895C141D5F9CD500A7B5D5 /* BrowserManager.swift in Sources */,
 				49895C121D5F9C6D00A7B5D5 /* Safari.m in Sources */,
 				495863E91D56462A008DD607 /* AXUIElementExtensions.swift in Sources */,
+				49B781B81DE8D00900A0875F /* SafariTechnologyPreview.m in Sources */,
 				49895C111D5F9C6D00A7B5D5 /* Chrome.m in Sources */,
 				4964FFA21D566625002AE5FC /* UserDefaultsExtensions.swift in Sources */,
 				498763F01D4D84E9001A6121 /* AppDelegate.swift in Sources */,

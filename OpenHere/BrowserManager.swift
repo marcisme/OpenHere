@@ -56,7 +56,7 @@ class BrowserManager {
     private typealias BBI = BrowserBundleIdentifier
 
     private let supportedBrowsers: [String:Browser] = [
-        BBI.safariTechnologyPreview: Safari(bundleIdentifier: BBI.safariTechnologyPreview),
+        BBI.safariTechnologyPreview: SafariTechnologyPreview(bundleIdentifier: BBI.safariTechnologyPreview),
         BBI.safari: Safari(bundleIdentifier: BBI.safari),
         BBI.chrome: Chrome(bundleIdentifier: BBI.chrome)
     ]

@@ -9,3 +9,4 @@
 #import "Browser.h"
 #import "Chrome.h"
 #import "Safari.h"
+#import "SafariTechnologyPreview.h"
