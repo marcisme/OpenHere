@@ -18,8 +18,8 @@ struct BrowserDescription {
 class BrowserManager {
 
     lazy var browserDescriptions: [BrowserDescription] = {
-        return self.supportedBrowsers.keys.flatMap { bundleIdentifier -> BrowserDescription? in
-            guard let applicationURL = NSWorkspace.shared().urlForApplication(withBundleIdentifier: bundleIdentifier) else {
+        return self.supportedBrowsers.keys.compactMap { bundleIdentifier -> BrowserDescription? in
+            guard let applicationURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleIdentifier) else {
                 return nil
             }
             let resourceValues = try! applicationURL.resourceValues(forKeys: [.effectiveIconKey, .nameKey])
@@ -62,7 +62,7 @@ class BrowserManager {
     ]
 
     private lazy var defaultBrowserBundleIdentifier: String = {
-        let url = NSWorkspace.shared().urlForApplication(toOpen: URL(string: "http:")!)!
+        let url = NSWorkspace.shared.urlForApplication(toOpen: URL(string: "http:")!)!
         let bundle = Bundle(url: url)!
         return bundle.bundleIdentifier!
     }()

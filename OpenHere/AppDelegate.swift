@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillFinishLaunching(_ notification: Notification) {
         guard browserManager.isAccessibilityEnabled else {
-            NSRunningApplication.current().terminate()
+            NSRunningApplication.current.terminate()
             return
         }
         defaults.registerDefaultVales()
@@ -77,11 +77,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         browserManager.setTargetBrowser(index: browserPopUpButton.indexOfSelectedItem)
     }
 
-    private dynamic func handleGetURLEvent(event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
+    @objc private func handleGetURLEvent(event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
         isOpeningURL = true
         if let urlAsString = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue {
             browserManager.openURL(url: urlAsString)
-            NSRunningApplication.current().terminate()
+            NSRunningApplication.current.terminate()
         }
     }
 
