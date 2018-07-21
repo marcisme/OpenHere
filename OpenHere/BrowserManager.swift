@@ -86,7 +86,7 @@ class BrowserManager {
         let hasWindowInCurrentSpace = pid.map { AXUIElementCreateApplication($0).hasWindowInCurrentSpace }
         switch hasWindowInCurrentSpace {
         case true?:
-            browser?.openURL(url, in: .newTab, andActivate: true)
+            browser?.openURL(url, in: .newTab, andActivate: shouldActivate)
         case false?:
             browser?.openURL(url, in: .newWindow, andActivate: shouldActivate)
         default:
