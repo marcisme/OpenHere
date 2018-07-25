@@ -16,6 +16,7 @@
 		49895C121D5F9C6D00A7B5D5 /* Safari.m in Sources */ = {isa = PBXBuildFile; fileRef = 49895C0E1D5F9C6D00A7B5D5 /* Safari.m */; };
 		49895C141D5F9CD500A7B5D5 /* BrowserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49895C131D5F9CD500A7B5D5 /* BrowserManager.swift */; };
 		49B781B81DE8D00900A0875F /* SafariTechnologyPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B781B71DE8D00900A0875F /* SafariTechnologyPreview.m */; };
+		49F05B862107C3870087B9E6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F05B852107C3870087B9E6 /* Sparkle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		49B27FB61D51A9730094EE9C /* OpenHere-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenHere-Bridging-Header.h"; sourceTree = "<group>"; };
 		49B781B61DE8CFC000A0875F /* SafariTechnologyPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafariTechnologyPreview.h; sourceTree = "<group>"; };
 		49B781B71DE8D00900A0875F /* SafariTechnologyPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafariTechnologyPreview.m; sourceTree = "<group>"; };
+		49F05B852107C3870087B9E6 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49F05B862107C3870087B9E6 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +59,7 @@
 			children = (
 				498763EE1D4D84E9001A6121 /* OpenHere */,
 				498763ED1D4D84E9001A6121 /* Products */,
+				49F05B852107C3870087B9E6 /* Sparkle.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +114,7 @@
 				498763E81D4D84E9001A6121 /* Sources */,
 				498763E91D4D84E9001A6121 /* Frameworks */,
 				498763EA1D4D84E9001A6121 /* Resources */,
+				49492C1E2103A99600410BDF /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -168,6 +173,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49492C1E2103A99600410BDF /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/Sparkle.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Sparkle.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		498763E81D4D84E9001A6121 /* Sources */ = {
@@ -311,6 +335,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = F7NXW9A7Z8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = OpenHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mssft.OpenHere;
@@ -328,6 +357,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = F7NXW9A7Z8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = OpenHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mssft.OpenHere;
