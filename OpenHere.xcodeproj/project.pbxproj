@@ -17,6 +17,7 @@
 		49895C141D5F9CD500A7B5D5 /* BrowserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49895C131D5F9CD500A7B5D5 /* BrowserManager.swift */; };
 		49B781B81DE8D00900A0875F /* SafariTechnologyPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B781B71DE8D00900A0875F /* SafariTechnologyPreview.m */; };
 		49F05B862107C3870087B9E6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F05B852107C3870087B9E6 /* Sparkle.framework */; };
+		49F05B8A210A97CF0087B9E6 /* sparkle_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 49F05B89210A97CF0087B9E6 /* sparkle_dsa_pub.pem */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		49B781B61DE8CFC000A0875F /* SafariTechnologyPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafariTechnologyPreview.h; sourceTree = "<group>"; };
 		49B781B71DE8D00900A0875F /* SafariTechnologyPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafariTechnologyPreview.m; sourceTree = "<group>"; };
 		49F05B852107C3870087B9E6 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
+		49F05B89210A97CF0087B9E6 /* sparkle_dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_dsa_pub.pem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +59,10 @@
 		498763E31D4D84E9001A6121 = {
 			isa = PBXGroup;
 			children = (
+				49F05B852107C3870087B9E6 /* Sparkle.framework */,
 				498763EE1D4D84E9001A6121 /* OpenHere */,
 				498763ED1D4D84E9001A6121 /* Products */,
-				49F05B852107C3870087B9E6 /* Sparkle.framework */,
+				49F05B88210A97CE0087B9E6 /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,9 +83,7 @@
 				495863E81D56462A008DD607 /* AXUIElementExtensions.swift */,
 				49895C131D5F9CD500A7B5D5 /* BrowserManager.swift */,
 				4964FFA11D566625002AE5FC /* UserDefaultsExtensions.swift */,
-				498763F11D4D84E9001A6121 /* Assets.xcassets */,
 				49895C081D5F9C6D00A7B5D5 /* Browsers */,
-				498763F31D4D84E9001A6121 /* MainMenu.xib */,
 			);
 			path = OpenHere;
 			sourceTree = "<group>";
@@ -102,6 +103,17 @@
 				49B781B71DE8D00900A0875F /* SafariTechnologyPreview.m */,
 			);
 			path = Browsers;
+			sourceTree = "<group>";
+		};
+		49F05B88210A97CE0087B9E6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				49F05B89210A97CF0087B9E6 /* sparkle_dsa_pub.pem */,
+				498763F11D4D84E9001A6121 /* Assets.xcassets */,
+				498763F31D4D84E9001A6121 /* MainMenu.xib */,
+			);
+			name = Resources;
+			path = OpenHere/Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49F05B8A210A97CF0087B9E6 /* sparkle_dsa_pub.pem in Resources */,
 				498763F21D4D84E9001A6121 /* Assets.xcassets in Resources */,
 				498763F51D4D84E9001A6121 /* MainMenu.xib in Resources */,
 			);
