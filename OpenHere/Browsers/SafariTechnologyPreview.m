@@ -48,8 +48,9 @@
             SafariTechnologyPreviewWindow* frontWindow = [[application windows] firstObject];
             SafariTechnologyPreviewTab* newTab = [[[application classForScriptingClass:@"tab"] alloc] init];
             [[frontWindow tabs] addObject:newTab];
-            frontWindow.currentTab = newTab;
-            frontWindow.tabs.lastObject.URL = url;
+            // don't touch `newTab` after adding it to `tabs` - it was causing a crash
+            frontWindow.currentTab = frontWindow.tabs.lastObject;
+            frontWindow.currentTab.URL = url;
             break;
         }
         default: {
