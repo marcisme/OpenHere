@@ -6,7 +6,7 @@
 #import <ScriptingBridge/ScriptingBridge.h>
 
 
-@class SafariTechnologyPreviewApplication, SafariTechnologyPreviewDocument, SafariTechnologyPreviewWindow, SafariTechnologyPreviewTab;
+@class SafariTechnologyPreviewApplication, SafariTechnologyPreviewDocument, SafariTechnologyPreviewWindow, SafariTechnologyPreviewTab, SafariTechnologyPreviewSourceProvider, SafariTechnologyPreviewContentsProvider;
 
 enum SafariTechnologyPreviewSaveOptions {
 	SafariTechnologyPreviewSaveOptionsYes = 'yes ' /* Save the file. */,
